@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Datepicker Demo</title>
+</head>
+<body>
+    <link href="assets/the-datepicker.css" rel="stylesheet" />
+    <script src="assets/the-datepicker.js"></script>
+
+    <label>Datepicker</label>
+    <input type="text" id="datepickerInput"/>
+
+    <script>
+        const input = document.getElementById('datepickerInput');
+        const datepicker = new TheDatepicker.Datepicker(input);
+        datepicker.options.setInputFormat('d/m/Y');
+
+        datepicker.render();
+
+        input.addEventListener('blur', function(e) {
+           console.log("input blur");
+           let datefield = e.target.value;
+            if (datefield != null && datefield !=""){
+                var ye = datefield.split("/")[2];
+                if(ye.length == 2) {
+                    ye = (ye > 50) ? "19" + ye : "20" + ye;
+                    datefield = datefield.split("/");
+                    datefield[2] = ye;
+                    datefield = datefield.join("/");
+                    input.value = datefield;
+                    datepicker.selectDate(datefield)
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
