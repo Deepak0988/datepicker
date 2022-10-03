@@ -5,6 +5,25 @@
     <title>Datepicker Demo</title>
 </head>
 <body>
+    <style>
+        .the-datepicker__main{
+            height: 150px !important;
+            line-height: 0px !important;
+        }
+
+        .the-datepicker__main a:link {
+            color: black !important;
+        }
+
+        .the-datepicker__container{
+            font-size: 10px;
+        }
+
+        .the-datepicker__navigation {
+            background: grey;
+        }
+
+    </style>
     <link href="assets/the-datepicker.css" rel="stylesheet" />
     <script src="assets/the-datepicker.js"></script>
 
@@ -12,10 +31,10 @@
     <input type="text" id="datepickerInput"/>
 
     <script>
+
         const input = document.getElementById('datepickerInput');
         const datepicker = new TheDatepicker.Datepicker(input);
         datepicker.options.setInputFormat('d/m/Y');
-
         datepicker.render();
 
         input.addEventListener('blur', function(e) {
