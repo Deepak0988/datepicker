@@ -35,6 +35,15 @@
         const input = document.getElementById('datepickerInput');
         const datepicker = new TheDatepicker.Datepicker(input);
         datepicker.options.setInputFormat('d/m/Y');
+
+        datepicker.options.setFooterStructureResolver(function() {
+            let footer = document.createElement('a');
+            var linkText = document.createTextNode("Today");
+            footer.appendChild(linkText);
+            footer.href = "#";
+            footer.id = "todayFooter";
+            return footer;
+        })
         datepicker.render();
 
         input.addEventListener('blur', function(e) {
@@ -51,6 +60,12 @@
                     datepicker.selectDate(datefield)
                 }
             }
+
+            const today = document.getElementById('todayFooter');
+            today.addEventListener('click', function(e) {
+                let d = new Date();
+                datepicker.selectDate(d.getMonth()+1 + "/" + d.getDate()  +"/" + d.getFullYear())
+            });
         });
     </script>
 
